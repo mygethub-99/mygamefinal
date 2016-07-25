@@ -88,7 +88,8 @@ class SurviveAPI(remote.Service):
                     'A User with that name does not exist!')
         checklist= [1, 2, 3]
         if (request.how_hard not in checklist):
-            raise endpoints.NotFoundException('Invalid value. Pick a level 1, 2, or 3')
+            raise endpoints.NotFoundException\
+            ('Invalid value. Pick a level 1, 2, or 3')
         #Check to see if use is already in a live game.
         ingamecheck=Game.query(Game.user==user.key).get()
         setdiff=request.how_hard
