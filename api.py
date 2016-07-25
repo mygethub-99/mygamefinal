@@ -16,6 +16,7 @@ from models import UserForm, UserForms, GetUserGame
 from models import ScoreForms, ScoreForm, GetScore
 from dict_list import items, craft, commands, defaults, crafty
 from dict_list import gamecheck
+from utils import get_by_urlsafe
 
 
 NEW_GAME_REQUEST = endpoints.ResourceContainer(NewGameForm)
@@ -85,6 +86,9 @@ class SurviveAPI(remote.Service):
         if not user:
             raise endpoints.NotFoundException(
                     'A User with that name does not exist!')
+        checklist= [1, 2, 3]
+        if (request.how_hard not in checklist):
+            raise endpoints.NotFoundException('Invalid value. Pick a level 1, 2, or 3')
         #Check to see if use is already in a live game.
         ingamecheck=Game.query(Game.user==user.key).get()
         setdiff=request.how_hard
@@ -119,6 +123,7 @@ class SurviveAPI(remote.Service):
     @query_user
     def cancel_game(self, request, user):
         """Cancels game in progress"""
+        #user=User.query(User.name==request.user_name).get()
         if not user:
             raise endpoints.NotFoundException(
                     'A User with that name does not exist!')
