@@ -49,7 +49,9 @@ templates folder: Contain all the .html templates used by the application. flask
 
 ***
 ### How to play the game.
-
+First you will need to create a user, then a new game. When creating a new game you have 3 levels of difficulty. 1 is easy with no time limt, 2 has a 7 minute time limit, and 3 has a 4 minute time limit to survive.
+In order to survive you must create a tent and a working firepit with a torch. You have all the resources needed to craft each item. You will have to figure out what is needed to craft each item. You can use the howToCraft function to see how to build each item.
+Scoring is setup as 20 points for level 1 game, 40 points for level 2 game and 60 points for a level 3 game.
 ***
 ### List of api.py module functions.
 
