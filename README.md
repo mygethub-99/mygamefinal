@@ -12,7 +12,7 @@
 Software:
 Clone [mygamefinal] (https://github.com/mygethub-99/mygamefinal/edit/master) on your local machine.
 Install [Google_App_Launcher] (https://cloud.google.com/appengine/downloads)
-Install [FireFox] https://www.mozilla.org/en-US/firefox/new/?f=86
+Install [FireFox] (https://www.mozilla.org/en-US/firefox/new/?f=86)
 
 Files
 api.py: Main application code handleing api models for game functions
@@ -67,9 +67,13 @@ craftItemNew is the module used to craft an item to survive.
 checkInventory will check the inventory for a single item that belongs to a user
 
 _inventlist sets up a new inventory for a user
+
 howtoCraft give a listing of how to craft each item
+
 gameHistory provides a listing of each move made by a player for a particular game
+
 get_user_ranking gives a list of each player and their ranking
+
 scores provides the scores for a variable number of players pulled.
 
 
