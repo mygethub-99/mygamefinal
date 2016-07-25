@@ -44,7 +44,7 @@ templates folder: Contain all the .html templates used by the application. flask
  8. Add another tab to firefox browser and type in this url: localhost:8001. This will open up the App Engine Console. For more info on the App Engine Console, click on this link. [Click_here] (https://cloud.google.com/appengine/docs/python/tools/using-local-server)
  9. You are now ready to run the application on local host.
  10. To play the game on the GAE server, click on the Stop button in the GAE launcher. Wait for the application to stop, then click on deploy in the GAE launcher. This will upload the game code to the GAE server and give you a log window to view for errors.
- 11. After completion of the application launch to GAE, type this url in the firefox browser: workmanapp-server.appspot.com/_ah/api/explorer, or click this link. [Link] (workmanapp-server.appspot.com/_ah/api/explorer)
+ 11. After completion of the application launch to GAE, type this url in the firefox browser: http:\\workmanapp-server.appspot.com/_ah/api/explorer, or click this link. [Link] (http:\\workmanapp-server.appspot.com/_ah/api/explorer)
  12. You will now have view of the api explorer as host by the GAE server.
 
 ***
