@@ -30,3 +30,4 @@ libraries:
 
 # pycrypto library used for OAuth2 (req'd for authenticated APIs)
 - name: pycrypto
+  version: latest
