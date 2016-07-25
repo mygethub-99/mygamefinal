@@ -51,13 +51,21 @@ templates folder: Contain all the .html templates used by the application. flask
 ***
 ### List of api.py module functions.
 query_user decorator used for user query in various modules
+
 create_user creates a new user in GAE
+
 new_game creates a new game for a user
+
 cancel_game ends a game
+
 get_user_game gives a status of a users game
+
 invenOfCraft is used to craft an item
+
 craftItemNew is the module used to craft an item to survive.
+
 checkInventory will check the inventory for a single item that belongs to a user
+
 _inventlist sets up a new inventory for a user
 howtoCraft give a listing of how to craft each item
 gameHistory provides a listing of each move made by a player for a particular game
