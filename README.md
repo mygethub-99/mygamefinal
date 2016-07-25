@@ -1,10 +1,10 @@
-# Fullstack Nano Degree Project 3
+# Fullstack Nano Degree Project 6
 
 ****
 
-## Name of Project: Dallas Texas Restaurant app.
+## Name of Project: Survive GAE game api
 
-### Description: The Dallas Texas Restaurant Application provides a list of restaurants along with particulars such as location, map, type of cuisine, and menu items of restaurants in Dallas Texas. Web App incorporates user registration, and oauth authentication along with the ability to post, edit and delete new restaurants, and menu items. Site allows the user to filter for particular cuisine types to narrow the list of restaurants to view.
+### Description: This is a game called Survive that is programed to operate on the GAE platform.
 ***
 
 ### Required Files and software.
