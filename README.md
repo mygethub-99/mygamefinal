@@ -4,7 +4,7 @@
 
 ## Name of Project: Survive GAE game api
 
-### Description: This is a game called Survive that is programed to operate on the GAE platform. This is a single player game that involves a player crafting the needed items to survive against the onslaught of the elements. The game is played using the google api explorer on a firefox web browswer.
+### Description: This is a game called Survive that is programed to operate on the GAE platform. This is a single player game that involves a player crafting the needed items to survive against the onslaught of the elements. The game is played using the google api explorer on a firefox web browser.
 ***
 
 ### Required software and files.
