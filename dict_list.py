@@ -1,8 +1,6 @@
 from protorpc import remote
 from protorpc import messages
 from protorpc import message_types
-from google.appengine.api import memcache
-
 from models import Inventory, User, Game
 import time
 
@@ -73,7 +71,7 @@ def gamecheck (ingamecheck):
             setattr(ingamecheck, "timeout", True)
             ingamecheck.put()
     if ingamecheck.difficulty == 3:
-        if ((int(time.time())-ingamecheck.timer)/60) == 1:
+        if ((int(time.time())-ingamecheck.timer)/60) == 4:
             setattr(ingamecheck, "timeout", True)
             ingamecheck.put()
     return
