@@ -42,14 +42,17 @@ templates folder: Contain all the .html templates used by the application. flask
  6. Now open FireFox and type in this url: localhost:8080/_ah/api/explorer 
  7. Click on the shiel symbol at the far left of the url in the browser and disable protection. This will allow the application to run on your browswer
  8. Add another tab to firefox browser and type in this url: localhost:8001. This will open up the App Engine Console.
- 9. Once you are logged in you may add new restaurants to edit and display in the web server application.
- 10. You are now ready to run the application on local host.
- 11. To play the game on the GAE server, click on the Stop button in the GAE launcher. Wait for the application to stop, then click on deploy in the GAE launcher. This will upload the game code to the GAE server and give you a log window to view for errors.
- 12. After completion of the application launch to GAE, type this url in the firefox browser: workmanapp-server.appspot.com/_ah/api/explorer
- 13. You will now have view of the api explorer as host by the GAE server.
+ 9. You are now ready to run the application on local host.
+ 10. To play the game on the GAE server, click on the Stop button in the GAE launcher. Wait for the application to stop, then click on deploy in the GAE launcher. This will upload the game code to the GAE server and give you a log window to view for errors.
+ 11. After completion of the application launch to GAE, type this url in the firefox browser: workmanapp-server.appspot.com/_ah/api/explorer
+ 12. You will now have view of the api explorer as host by the GAE server.
+
+***
+### How to play the game.
 
 ***
 ### List of api.py module functions.
+
 query_user decorator used for user query in various modules
 
 create_user creates a new user in GAE
