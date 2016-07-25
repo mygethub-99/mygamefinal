@@ -35,7 +35,7 @@ class ReminderEmail(webapp2.RequestHandler):
                 sender = 'noreply@{}.appspotmail.com'.format\
                 (app_identity.get_application_id())
                 to = user.email
-                subject = 'Hello {}, play your game dude!'.format(user.name)
+                subject = 'Hello {}, finish your survive game!'.format(user.name)
                 body = "Dude, it is time to finish this!!!!!" 
                 mail.send_mail(sender, to, subject, body) 
                     
