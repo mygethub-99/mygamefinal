@@ -63,18 +63,6 @@ class SurviveAPI(remote.Service):
                 request.user_name))
 
        
-    #This is not sending the output to the form.
-    #Since I added the inventory create function to the new
-    #game function, this form may be going away. Sorry!
-    def _copyInvenToForm(self,inven):
-        pf = InventoryForm()
-        for field in pf.all_fields():
-            if hasattr(inven, field.name):
-                setattr(pf, field.name, getattr(inven, field.name))
-        pf.check_initialized()
-        return pf
-        
-    
     @endpoints.method(request_message=NEW_GAME_REQUEST,
                       response_message=GameForm,
                       path='game',
@@ -131,8 +119,7 @@ class SurviveAPI(remote.Service):
         #Check to see if use is in a live game.
         ingamecheck=Game.query(Game.user==user.key).get()
         if hasattr(ingamecheck, "user")==True:
-            if ingamecheck.game_over==False and ingamecheck.\
-            canceled_game==False:
+            if ingamecheck.game_over==False:
                 setattr(ingamecheck, "canceled_game", True)
                 setattr(ingamecheck, "game_over", True)
                 ingamecheck.put()
