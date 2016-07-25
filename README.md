@@ -4,22 +4,32 @@
 
 ## Name of Project: Survive GAE game api
 
-### Description: This is a game called Survive that is programed to operate on the GAE platform.
+### Description: This is a game called Survive that is programed to operate on the GAE platform. This is a single player game that involves a player crafting the needed items to survive against the onslaught of the elements. The game is played using the google api explorer on a firefox web browswer.
 ***
 
-### Required Files and software.
+### Required software and files.
 
-Python: feb32015.py (Creates db, and tables), dbpopfeb3.py (Populates the DB with items for restaurant), dropallfeb32015.py (Drops all table data in the db), master.py (contains the main server code)
+Software:
+Install [mygamefinal] (https://github.com/mygethub-99/mygamefinal/edit/master) on your local machine.
+Install [Google App Launcher] (https://cloud.google.com/appengine/downloads)
+Install [FireFox] https://www.mozilla.org/en-US/firefox/new/?f=86
 
-json: FB_client_secrets.json, and client_secrets.json provide the needed code to allow for oauth authentication to take palce.
+Files
+api.py: Main application code handleing api models for game functions
 
-restaurantmapped.db: This is a sqlite db where all the apps data is stored and managed.
+app.yaml: Main GAE application config file that determine GAE project that app resides on.
 
 README.md: You are looking at it.
 
-static folder: Contains the styles.css files that allows for some customized formatting of the web site. All othe files in the static folder are jpg and png files that are used by the web site application.
+dict_list.py: Contains supporting code for game function.
 
-js: Contains the bootstrap.js file and bootstrap.min.js file used to create cool functions like carousel, drop down menus in a web site. jquery-2.1.4.js provides additional js for the web app.
+models.py: Contains classes related to game forms for input and response messaging.
+
+settings.py: Contains web client that is used for oauth operations.
+
+utils.py: Contains support coding for the application.
+
+engineapp: contains version of app.yaml, index.yaml and main.py files
 
 templates folder: Contain all the .html templates used by the application. flask, jinja are used to render templates from python and to script python within html.
 ***
