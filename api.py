@@ -54,13 +54,11 @@ class SurviveAPI(remote.Service):
         if User.query(User.name == request.user_name).get():
             raise endpoints.ConflictException(
                     'A User with that name already exists!')
-        #By adding wins, it added it to the create_user input #api page.
-        #wins = defaults['wins']
         user = User(name=request.user_name, email=request.email)
         #user.put() sends the user info that is ndb
         user.put()
-        return StringMessage1(message='User {} created!'.format(
-                request.user_name))
+        return StringMessage1(message='User {} created!'\
+            .format(request.user_name))
 
        
     @endpoints.method(request_message=NEW_GAME_REQUEST,
@@ -78,32 +76,29 @@ class SurviveAPI(remote.Service):
         if (request.how_hard not in checklist):
             raise endpoints.NotFoundException\
             ('Invalid value. Pick a level 1, 2, or 3')
-        #Check to see if use is already in a live game.
         ingamecheck=Game.query(Game.user==user.key).get()
-        setdiff=request.how_hard
-        #Test to see if a game entity actually exist.
-        if hasattr(ingamecheck, "user")==True:
-            if ingamecheck.game_over==False:
-                raise endpoints.ConflictException\
-                ('Only one active game per user is allowed')
-            else:
-                taskqueue.add(params=\
+        if not ingamecheck:
+            taskqueue.add(params=\
                 {'email': user.email, 'name': user.name},
-                url='/tasks/send_newgame_email', method="POST")
-                invenlist=self._inventlist(request)
-                game=Game.new_game(user.key, setdiff)
-                return game.to_form\
-                ('Prepare to test your survival skills!')
+            url='/tasks/send_newgame_email', method="POST")
+            invenlist=self._inventlist(request)
+            game=Game.new_game(user.key, request.how_hard)
+            return game.to_form\
+            ('Prepare to test your survival skills!')
+
+        if ingamecheck.game_over == False:
+            raise endpoints.ConflictException\
+                ('Only one active game per user is allowed')
         else:
             taskqueue.add(params=\
                 {'email': user.email, 'name': user.name},
             url='/tasks/send_newgame_email', method="POST")
             invenlist=self._inventlist(request)
-            game=Game.new_game(user.key, setdiff)
+            game=Game.new_game(user.key, request.how_hard)
             return game.to_form\
             ('Prepare to test your survival skills!')
 
-    
+        
     @endpoints.method(request_message=CANCELED_GAME,
                       response_message=StringMessage1,
                       path='cancel',
@@ -227,6 +222,8 @@ class SurviveAPI(remote.Service):
                     setattr(inventory_items, w, getattr\
                         (inventory_items, w)-neededForCraft[w])
             inventory_items.put()
+            ingamecheck.history.append(request.itemcraft)
+            ingamecheck.put()
         #Checks to see if you have survived and won the game.
         if inventory_items.tent>=1 and inventory_items.firepit>=1:
             setattr(ingamecheck, "survived", True)
@@ -241,8 +238,6 @@ class SurviveAPI(remote.Service):
             return StringMessage1(message='Congrats {}, you survived! Game over.'\
                 .format(inventory_items.name))
         else:
-            ingamecheck.history.append(request.itemcraft)
-            ingamecheck.put()
             return StringMessage1(message='{} Can be crafted! {}, You have {}'\
                 .format(request.itemcraft, takesToCraft, inven_ndb))
         
