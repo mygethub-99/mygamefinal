@@ -27,7 +27,6 @@ class ReminderEmail(webapp2.RequestHandler):
     def get(self):
         """Send a reminder email to players with an aging game"""
         users = User.query(User.email != None)
-
         for user in users:
             games =Game.query(Game.user == user.key).filter(Game.game_over ==\
                 False)
@@ -38,8 +37,7 @@ class ReminderEmail(webapp2.RequestHandler):
                 subject = 'Hello {}, finish your survive game!'.format(user.name)
                 body = "Dude, it is time to finish this!!!!!" 
                 mail.send_mail(sender, to, subject, body) 
-                    
-               
+              
 
 app = webapp2.WSGIApplication([
     ('/tasks/send_newgame_email', SendNewGameEmail), ('/cron/send_reminder',\
