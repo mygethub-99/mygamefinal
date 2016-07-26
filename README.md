@@ -31,6 +31,8 @@ utils.py: Contains support coding for the application.
 
 engineapp: contains version of app.yaml, index.yaml and main.py files
 
+cron.yaml: configures cron task.
+
 ***
 ## Web Application Setup
  1. Install all software listed above under Software section.
