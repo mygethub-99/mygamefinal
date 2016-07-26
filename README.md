@@ -10,7 +10,7 @@
 ### Required software and files.
 
 Software:
-Clone [mygamefinal] (https://github.com/mygethub-99/mygamefinal/edit/master) on your local machine.
+Clone [mygamefinal] (https://github.com/mygethub-99/mygamefinal.git) on your local machine.
 Install [Google_App_Launcher] (https://cloud.google.com/appengine/downloads)
 Install [FireFox] (https://www.mozilla.org/en-US/firefox/new/?f=86)
 
