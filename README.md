@@ -80,7 +80,7 @@ howtoCraft give a listing of how to craft each item
 
 gameHistory provides a listing of each move made by a player for a particular game
 
-get_user_ranking gives a list of each player and their ranking
+get_user_ranking gives a list of each player and their ranking if the user has a score to rank
 
 scores provides the scores for a variable number of players pulled
 
