@@ -10,7 +10,7 @@
 ### Required software and files.
 
 Software:
-Clone [mygamefinal] (https://github.com/mygethub-99/mygamefinal.git) on your local machine.
+Clone [mygamefinal] (https://github.com/mygethub-99/mygamefinal.git) onto your local machine.
 Install [Google_App_Launcher] (https://cloud.google.com/appengine/downloads)
 Install [FireFox] (https://www.mozilla.org/en-US/firefox/new/?f=86)
 
@@ -19,11 +19,11 @@ api.py: Main application code handleing api models for game functions
 
 app.yaml: Main GAE application config file that determine GAE project that app resides on.
 
-README.md: You are looking at it.
+README.md: Provides information and instructions related to the app survive.
 
 dict_list.py: Contains supporting code for game function.
 
-models.py: Contains classes related to game forms for input and response messaging.
+models.py: Contains classes related to game forms for input and response http messaging.
 
 settings.py: Contains web client that is used for oauth operations.
 
@@ -31,7 +31,6 @@ utils.py: Contains support coding for the application.
 
 engineapp: contains version of app.yaml, index.yaml and main.py files
 
-templates folder: Contain all the .html templates used by the application. flask, jinja are used to render templates from python and to script python within html.
 ***
 ## Web Application Setup
  1. Install all software listed above under Software section.
@@ -44,8 +43,8 @@ templates folder: Contain all the .html templates used by the application. flask
  8. Add another tab to firefox browser and type in this url: localhost:8001. This will open up the App Engine Console. For more info on the App Engine Console, click on this link. [Click_here] (https://cloud.google.com/appengine/docs/python/tools/using-local-server)
  9. You are now ready to run the application on local host.
  10. To play the game on the GAE server, click on the Stop button in the GAE launcher. Wait for the application to stop, then click on deploy in the GAE launcher. This will upload the game code to the GAE server and give you a log window to view for errors.
- 11. After completion of the application launch to GAE, type this url in the firefox browser: http://workmanapp-server.appspot.com/_ah/api/explorer, or click this link. [Link] (http://workmanapp-server.appspot.com/_ah/api/explorer)
- 12. You shold now have view of the api explorer as hosted by the GAE server.
+ 11. After completion of the application launch to GAE, type this url in the firefox browser: http://gamechanger-1260.appspot.com/_ah/api/explorer, or click this link. [Link] (http://gamechanger-1260.appspot.com/_ah/api/explorer)
+ 12. You shold now have view of the api explorer as hosted by the GAE server in your Firefox browser.
 
 ***
 ### How to play the game.
@@ -59,7 +58,7 @@ query_user decorator used for user query in various modules
 
 create_user creates a new user in GAE
 
-new_game creates a new game for a user
+new_game creates a new game for a user, setups up email reminder in taskqueue
 
 cancel_game ends a game
 
@@ -67,7 +66,7 @@ get_user_game gives a status of a users game
 
 invenOfCraft is used to craft an item
 
-craftItemNew is the module used to craft an item to survive.
+craftItemNew is the module used to craft an item to survive
 
 checkInventory will check the inventory for a single item that belongs to a user
 
@@ -79,6 +78,6 @@ gameHistory provides a listing of each move made by a player for a particular ga
 
 get_user_ranking gives a list of each player and their ranking
 
-scores provides the scores for a variable number of players pulled.
+scores provides the scores for a variable number of players pulled
 
 
