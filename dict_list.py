@@ -5,14 +5,7 @@ from models import Inventory, User, Game
 import time
 
 
-#Commands to see options, inventory, and craft itmes.
-commands = {
-                "i" : "see inventory",
-                "c" : "see crafting options",
-                "craft [item]" : "craft something from inventory items",
-           }
-
-#an inventory of items
+#An inventory of items.
 items = {
             "flint" : 50,
 
@@ -37,7 +30,7 @@ items = {
             "torch" : 0,
         }
 
-# Items needed to make an item for survival.
+#Items needed to make an item for survival.
 craft = {
             "hay" : { "grass" : 1 },
             "twig" : { "sapling" : 1 },
@@ -49,7 +42,7 @@ craft = {
             "pickaxe" : { "flint" : 2, "twig" : 1 }
         }
 
-#Provides how to craft strings for HowToCraft endpoint in api.py        
+#Provides how to craft strings for HowToCraft endpoint in api.py.        
 hay = "To make hay it takes 1 grass"
 twig = "To make twig it takes 1 sapling"
 log = "To make a log it takes 1 axe and 1 tree"
@@ -60,11 +53,8 @@ torch = "To make a torch it takes 1 flint, 1 grass, 1 twig"
 pickaxe = "To make a pickaxe it takes 2 flint, 1 twig"
 crafty =[hay, twig, log, axe, tent, torch, firepit, pickaxe]
 
-defaults = {
-	"wins" : 0,
-	"total_played": 0
-}
 
+#Checks time lapse of game.
 def gamecheck (ingamecheck):
     if ingamecheck.difficulty == 2:
         if ((int(time.time())-ingamecheck.timer)/60) == 7:
