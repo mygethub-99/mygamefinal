@@ -49,6 +49,7 @@ utils.pay: handles url messaging
  10. To play the game on the GAE server, click on the Stop button in the GAE launcher. Wait for the application to stop, then click on deploy in the GAE launcher. This will upload the game code to the GAE server and give you a log window to view for errors.
  11. After completion of the application launch to GAE, type this url in the firefox browser: http://gamechanger-1260.appspot.com/_ah/api/explorer, or click this link. [Link] (http://gamechanger-1260.appspot.com/_ah/api/explorer)
  12. You shold now have view of the api explorer as hosted by the GAE server in your Firefox browser.
+ 13. NOTE: There is an issue with API explorer not displaying api descriptions for api using none-GAE decorators.
 
 ***
 ### How to play the game.
