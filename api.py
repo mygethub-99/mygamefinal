@@ -1,20 +1,41 @@
-import logging
 import time
 import endpoints
 from protorpc import remote
 from protorpc import messages
 from protorpc import message_types
-from google.appengine.api import memcache
 from google.appengine.ext import ndb
 from google.appengine.api import taskqueue
-from google.appengine.ext.db import Key
-from models import User, Game, NewGameForm, Inventory
-from models import StringMessage, GameForm, StringMessage1
-from models import checkInventory, StringMessageCraftForm
-from models import CraftForm, CraftItem, cancel_game
-from models import UserForm, UserForms, GetUserGame
-from models import ScoreForms, ScoreForm, GetScore
-from dict_list import items, craft, crafty, gamecheck
+from models.messages import(
+    StringMessage,
+    StringMessage1,
+    UserForms,
+    ScoreForms
+    )
+from models.request import (
+    checkInventory,
+    cancel_game,
+    NewGameForm,
+    CraftItem,
+    GetScore,
+    GetUserGame
+    )
+from models.game import (
+    Game, 
+    GameForm
+    )
+from models.user import (
+    User,
+    ScoreForm,
+    UserForm
+    )
+from models.inventory import Inventory
+from dict_list import (
+    items, 
+    craft, 
+    crafty, 
+    gamecheck,
+    invenOfCraft
+    )
 from utils import get_by_urlsafe
 
 
@@ -22,12 +43,11 @@ NEW_GAME_REQUEST = endpoints.ResourceContainer(NewGameForm)
 INVENT_CHECK = endpoints.ResourceContainer(checkInventory)
 CRAFT_ITEM = endpoints.ResourceContainer(CraftItem)
 CANCELED_GAME = endpoints.ResourceContainer(cancel_game)
-GAME_HISTORY = endpoints.ResourceContainer\
+GAME_HISTORY = endpoints.ResourceContainer \
 (urlsafe_game_key=messages.StringField(1))
-USER_REQUEST = endpoints.ResourceContainer\
+USER_REQUEST = endpoints.ResourceContainer \
 (user_name=messages.StringField(1), email=messages.StringField(2))
-GET_GAME_REQUEST = endpoints.ResourceContainer(
-        urlsafe_game_key=messages.StringField(1),)
+GET_USER_GAME = endpoints.ResourceContainer(GetUserGame)
 GAMESCORE = endpoints.ResourceContainer(GetScore)
 
 
@@ -47,7 +67,7 @@ class SurviveAPI(remote.Service):
                       response_message=StringMessage1,
                       path='user',
                       name='create_user',
-                      http_method='POST')
+                      http_method='PUT')
     def create_user(self, request):
         """Create a User. Requires a unique username"""
         if User.query(User.name == request.user_name).get():
@@ -56,7 +76,7 @@ class SurviveAPI(remote.Service):
         user = User(name=request.user_name, email=request.email)
         #user.put() sends the user info that is ndb
         user.put()
-        return StringMessage1(message='User {} created!'\
+        return StringMessage1(message='User {} created!' \
             .format(request.user_name))
 
        
@@ -64,7 +84,7 @@ class SurviveAPI(remote.Service):
                       response_message=GameForm,
                       path='game',
                       name='new_game',
-                      http_method='POST')
+                      http_method='PUT')
     @query_user
     def new_game(self, request, user):
         """Creates new game"""
@@ -73,28 +93,28 @@ class SurviveAPI(remote.Service):
                     'A User with that name does not exist!')
         checklist= [1, 2, 3]
         if (request.how_hard not in checklist):
-            raise endpoints.NotFoundException\
+            raise endpoints.NotFoundException \
             ('Invalid value. Pick a level 1, 2, or 3')
         ingamecheck=Game.query(Game.user==user.key).get()
         if not ingamecheck:
-            taskqueue.add(params=\
+            taskqueue.add(params= \
                 {'email': user.email, 'name': user.name},
             url='/tasks/send_newgame_email', method="POST")
             invenlist=self._inventlist(request)
             game=Game.new_game(user.key, request.how_hard)
-            return game.to_form\
+            return game.to_form \
             ('Prepare to test your survival skills!')
 
         if ingamecheck.game_over == False:
-            raise endpoints.ConflictException\
+            raise endpoints.ConflictException \
                 ('Only one active game per user is allowed')
         else:
-            taskqueue.add(params=\
+            taskqueue.add(params= \
                 {'email': user.email, 'name': user.name},
             url='/tasks/send_newgame_email', method="POST")
             invenlist=self._inventlist(request)
             game=Game.new_game(user.key, request.how_hard)
-            return game.to_form\
+            return game.to_form \
             ('Prepare to test your survival skills!')
 
         
@@ -102,7 +122,7 @@ class SurviveAPI(remote.Service):
                       response_message=StringMessage1,
                       path='cancel',
                       name='cancel_game',
-                      http_method='POST')
+                      http_method='PUT')
     @query_user
     def cancel_game(self, request, user):
         """Cancels game in progress"""
@@ -117,56 +137,56 @@ class SurviveAPI(remote.Service):
                 setattr(ingamecheck, "canceled_game", True)
                 setattr(ingamecheck, "game_over", True)
                 ingamecheck.put()
-                return StringMessage1\
-                (message='User {} has canceled the game. Play again soon!!!'.\
+                return StringMessage1 \
+                (message='User {} has canceled the game. Play again soon!!!'. \
                     format(request.user_name))
             else:
-                return StringMessage1\
-                (message='User {} is not in a active game. Game cant be canceled'.\
+                return StringMessage1 \
+                (message='User {} is not in a active game. Game cant be canceled'. \
                     format(request.user_name))
         else:
             raise endpoints.NotFoundException(
-                    'User {} does not have any games to cancel!'.\
+                    'User {} does not have any games to cancel!'. \
                     format(request.user_name))
     
 
-    @endpoints.method(request_message=GAME_HISTORY,
+    @endpoints.method(request_message=GET_USER_GAME,
                       response_message=GameForm,
-                      path='game/{urlsafe_game_key}',
+                      path='game/get_user_game',
                       name='get_user_game',
-                      http_method='GET')
-    def get_user_game(self, request):
+                      http_method='POST')
+    #Requires POST method to provide request.user.name
+    @query_user
+    def get_user_game(self, request, user):
         """Return all User's active games"""
-        game = get_by_urlsafe(request.urlsafe_game_key, Game)
-        if game:
-            return game.to_form('Status of Game!')
+        if not user:
+            raise endpoints.NotFoundException(
+                    'A User with that name does not exist!')
+        ingamecheck=Game.query(Game.user==user.key).get()
+        if ingamecheck.game_over == False:
+            return ingamecheck.to_form \
+            ('Here is the status of your active game.')
         else:
-            raise endpoints.NotFoundException('Game not found!')
+            raise endpoints.NotFoundException \
+            ('No active game found for user. Please try another user name')
 
 
-    #Function to re-populate the copycraft dict with inventory values.        
-    def invenOfCraft(self, copycraft, inventory_items):
-        for w in copycraft:
-            copycraft[w]=getattr(inventory_items, w)
-        return copycraft
-
-       
     @endpoints.method(request_message=CRAFT_ITEM,
                       response_message=StringMessage1,
                       path='craft',
                       name='craft_item', 
-                      http_method='POST')
+                      http_method='PUT')
     @query_user
     def craftItemNew(self, request, user):
         """Craft an item"""
         if not user:
             raise endpoints.NotFoundException(
                     'A User with that name does not exist!')
-        ingamecheck=Game.query(Game.user==user.key).filter\
+        ingamecheck=Game.query(Game.user==user.key).filter \
         (Game.game_over == False)
         ingamecheck =ingamecheck.get()
         if not ingamecheck:
-            raise endpoints.NotFoundException\
+            raise endpoints.NotFoundException \
             ('User is not in a game. Please create a new game for this user.')
         #Check for if out of time.
         if ingamecheck.timeout == True:
@@ -196,7 +216,7 @@ class SurviveAPI(remote.Service):
         copycraft=takesToCraft.copy()
         #Calls a function to populate copycraft with actual inventory 
         #values from the Inventory ndb model.
-        self.invenOfCraft(copycraft, inventory_items)
+        invenOfCraft(copycraft, inventory_items)
         #return of invenOfCraft function.
         inven_ndb=copycraft
         #Compares what is needed to craft an item to what exist in inventory.
@@ -207,8 +227,8 @@ class SurviveAPI(remote.Service):
         for i in craft[request.itemcraft]:
             if craft[request.itemcraft] [i]>inven_ndb[i]:
                 canBeMade=False
-                return StringMessage1\
-                (message='Sorry, item can not be crafted. Takes {}, you only have {}'\
+                return StringMessage1 \
+                (message='Sorry, item can not be crafted. Takes {}, you only have {}' \
                     .format(takesToCraft, inven_ndb))
         if canBeMade==True:
             # Adds 1 to the quantity of a crafted item in ndb model.
@@ -218,7 +238,7 @@ class SurviveAPI(remote.Service):
             neededForCraft= takesToCraft.copy()
             for w in neededForCraft:
                 if hasattr(inventory_items, w)==True:
-                    setattr(inventory_items, w, getattr\
+                    setattr(inventory_items, w, getattr \
                         (inventory_items, w)-neededForCraft[w])
             inventory_items.put()
             ingamecheck.history.append(request.itemcraft)
@@ -228,16 +248,16 @@ class SurviveAPI(remote.Service):
             setattr(ingamecheck, "survived", True)
             setattr(ingamecheck, "game_over", True)
             setattr(user, "wins", 1+getattr(user, "wins"))
-            setattr(user, "total_played", 1+getattr\
+            setattr(user, "total_played", 1+getattr \
                 (user, "total_played"))
-            setattr(user, "score", 20*ingamecheck.difficulty+\
+            setattr(user, "score", 20*ingamecheck.difficulty+ \
                 user.score)
             ingamecheck.put()
             user.put()
-            return StringMessage1(message='Congrats {}, you survived! Game over.'\
+            return StringMessage1(message='Congrats {}, you survived! Game over.' \
                 .format(inventory_items.name))
         else:
-            return StringMessage1(message='{} Can be crafted! {}, You have {}'\
+            return StringMessage1(message='{} Can be crafted! {}, You have {}' \
                 .format(request.itemcraft, takesToCraft, inven_ndb))
         
 
@@ -247,7 +267,9 @@ class SurviveAPI(remote.Service):
                       path='invencheck',
                       #This is the name that appears in the api
                       name='check_items',
-                      http_method='POST')
+#Must be a POST message in order for Request body to work in Google api explorer
+#POST message allows for Providing a block of data. 
+                      http_method='GET')
     @query_user
     def checkInventory(self, request, user):
         """Used to pull inventory on a item"""
@@ -258,7 +280,7 @@ class SurviveAPI(remote.Service):
         if user.key==chklist.user:
             itemname=request.item_name
             value=getattr( chklist, itemname)
-            return StringMessage1(message='You have {} {} '.format\
+            return StringMessage1(message='You have {} {} '.format \
                 (value, itemname))
 
  
@@ -266,7 +288,7 @@ class SurviveAPI(remote.Service):
     #deletes old inventory, creates a new inventory for the user.
     @query_user
     def _inventlist(self, request, user):
-        check_invent=Inventory.query(Inventory.name==\
+        check_invent=Inventory.query(Inventory.name== \
             request.user_name).get()
         #Deletes the inventory list and throw message.    
         if check_invent:
@@ -280,7 +302,9 @@ class SurviveAPI(remote.Service):
 
     @endpoints.method(message_types.VoidMessage, StringMessage,
             path='howtocraft',
-            http_method='GET', name='HowToCraft')
+            http_method='POST', 
+            name='HowToCraft')
+    #Must be a POST method to supply request response message
     def howtoCraft(self, request):
         """Pulls a list of how to craft an item."""
         message=crafty
@@ -304,10 +328,11 @@ class SurviveAPI(remote.Service):
                       path='user/ranking',
                       name='get_user_rankings',
                       http_method='POST')
+    #Must be POST method to supply request response message
     def get_user_rankings(self, request):
         """Return all Users ranked by their win percentage"""
         users = User.query(User.total_played > 0).fetch()
-        users = sorted(users, key=lambda x: x.win_percentage,\
+        users = sorted(users, key=lambda x: x.win_percentage, \
          reverse=True)
         return UserForms(items=[i.to_form() for i in users])
 
@@ -315,12 +340,13 @@ class SurviveAPI(remote.Service):
     @endpoints.method(request_message=GAMESCORE,
             response_message=ScoreForms,
             path='user/userscore',
-            name='get_users_score',
+            name='get_high_score',
             http_method='POST')
+    #Must be POST method to supply request response message
     def scores(self, request):
         """Present User scores"""
-        queryscore = User.query()
-        qscore = queryscore.fetch(request.HowMany, projection=\
+        queryscore = User.query().order(-User.score)
+        qscore = queryscore.fetch(request.HowManyToQuery, projection= \
             [User.name, User.score])
         qscore = sorted(qscore, key=lambda x: x.score, reverse=True)
         return ScoreForms(items=[i.to_score() for i in qscore])
