@@ -51,14 +51,17 @@ utils.py: process url web safe ProtoBuf messaging.
 
 ***
 ### How to play the game.
-First you will need to create a user, then a new game. When creating a new game you have 3 levels of difficulty. 1 is easy with no time limt, 2 has a 7 minute time limit, and 3 has a 4 minute time limit to survive.
-1. Create new user by selecting the survive.create_user link. Input your email address and a unique user name.
-2. Create a new game by selecting the survive.new_game link. Choose the level of difficulty of the game 1=easy unlimited game time, 2= a seven minute limit to play the game, 3= a four minute game time limit. A user can only have ONE active game at a time.
-3. To win a player must craft a firepit and a tent. Use the survive.howToCraft link to see what items are needed to craft an item. Each player starts with all the flint, grass, tree, sapling, and boulders needed to make items required to build a tent and a firepit.
-* 
+1. Create a user, then a new game. When creating a new game there are three levels of difficulty. Level 1 is easy with no time limt, level 2 has a 7 minute time limit, and level 3 has a 4 minute time limit to survive.
+2. Create new user by selecting the survive.create_user link. Input your email address and a unique user name.
+3. Create a new game by selecting the survive.new_game link. Choose the level of difficulty of the game 1=easy unlimited game time, 2= a seven minute limit to play the game, 3= a four minute game time limit. A user can only have ONE active game at a time.
+4. To win a player must craft a firepit and a tent. Use the survive.howToCraft link to see what items are needed to craft an item. Each player starts with all the flint, grass, tree, sapling, and boulders needed to make items required to build a tent and a firepit.
+* Hints
+   *You need to make lots and lots of twigs and hay first.
+   *Then make enough axe to create the logs needed for the firepit and a torch.
+   *For the tent make lost of hay and twigs.
+5. Once a tent, firepit and torch are crafted, the game will tell you have survived.
+6. A player will recieve 20 points for a level 1 game, 20 points for a level 2 game and 60 points for a level 3 game.
 
-In order to survive you must create a tent and a working firepit with a torch. You have all the resources needed to craft each item. You will have to figure out what is needed to craft each item. You can use the howToCraft function to see how to build each item.
-Scoring is setup as 20 points for level 1 game, 40 points for level 2 game and 60 points for a level 3 game.
 ***
 ### List of api.py module functions.
 
