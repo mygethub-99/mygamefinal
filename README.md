@@ -56,13 +56,24 @@ utils.py: process url web safe ProtoBuf messaging.
 3. Create a new game by selecting the survive.new_game link. Choose the level of difficulty of the game 1=easy unlimited game time, 2= a seven minute limit to play the game, 3= a four minute game time limit. A user can only have ONE active game at a time.
 4. To win a player must craft a firepit and a tent. Use the survive.howToCraft link to see what items are needed to craft an item. Each player starts with all the flint, grass, tree, sapling, and boulders needed to make items required to build a tent and a firepit.
 * Hints
-   *You need to make lots and lots of twigs and hay first.
-   *Then make enough axe to create the logs needed for the firepit and a torch.
-   *For the tent make lost of hay and twigs.
+   a. Craft lots and lots of twigs and hay first.
+   b. Craft enough axe to create the logs needed for the firepit and a torch.
+   c. For the tent make lost of hay and twigs.
+   d. The game will tell you if you have created an item. If not, the game will tell you what is needed to craft the item.
 5. Once a tent, firepit and torch are crafted, the game will tell you have survived.
 6. A player will recieve 20 points for a level 1 game, 20 points for a level 2 game and 60 points for a level 3 game.
-
 ***
+### List of game functions that can be executed in api explorer
+survive.cancel_game. Cancels game based on a user name.
+survive.check_items. Give a user a means to query the inventory on a single inventory item.
+survive.craft_item. Use this function to craft items needed to survive.
+survive.create_user. Creates a new user.
+survive.game_history. Give a history of a players moves for a url safe game key. Game key can be found in Datastore Viewer Game entity.
+survive.get_high_score. List out scores of users.
+survive.get_user_game. Provides a status of a users active game.
+survive.get_user_ranking. Size of list can be set in request page. Returns user ranking in descending order.
+survive.howToCraft. Provides a list of item and what is needed to craft each item to survive.
+survive.new_game. Creates a new game for a user. Only one active game allowed per user.
 ### List of api.py module functions.
 
 query_user decorator used for user query in various modules
