@@ -67,8 +67,9 @@ index.py: Is used to create indexes for entity properties related to queries usi
 5. A player will recieve 20 points for a level 1 game, 40 points for a level 2 game, and 60 points for a level 3 game.
 6. Good Luck!!!!!
 
-### List of game functions that can be executed in api explorer
+### Endpoints Definitions:
 survive.cancel_game. Cancels game based on a user name.
+  *Hey
 
 survive.check_items. Gives a user a means to query the inventory for a single inventory item.
 
