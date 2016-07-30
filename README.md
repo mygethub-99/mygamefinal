@@ -73,21 +73,21 @@ index.py: Is used to create indexes for entity properties related to queries usi
   * Method:'Put'
   * Parameters:'user_name'
   * Returns:Message confirming that the user's game has been canceled.
-  * Descrip:queries User entity using request.user.name parameter and updated boolean value of User.cancel_game
+  * Descrip:Queries User entity using request.user.name parameter and updated boolean value of User.cancel_game
 
 2. survive.check_items.
   * Path:'invencheck'
   * Method:'POST'
   * Parameters:'user_name, item_name'
   * Returns:Message contains the inventory for a users item in inventory
-  * Descrip:queries Request body supplies user.name and item.name for query of Inventory entity, then return list of item inventory for a single user.
+  * Descrip:Queries Request body supplies user.name and item.name for query of Inventory entity, then return list of item inventory for a single user.
 
 3. survive.craft_item. 
   * Path:'craft'
   * Method:'PUT'
   * Parameters:'itemcraft, user_name'
   * Returns:Message telling the user that the item can, or can not be crafted based on the user's current inventory of items.
-  * Descrip:This is the main api in the game. It starts game timers, checks to see if an item can be crafted, if a game has been won, and updated the Game entity and Inventory entity is necessary.
+  * Descrip:This is the main api in the game. It starts game timers, checks to see if an item can be crafted, if a game has been won, and updates the Game entity and Inventory entity is necessary.
 
 4. survive.create_user.
   * Path:'user'
@@ -101,30 +101,35 @@ index.py: Is used to create indexes for entity properties related to queries usi
   * Method:'GET'
   * Parameters:'urlsafe_game_key'
   * Returns:Message containing the list of every item crafted by a user during a game.
+  * Descrip:This api returns the history of all items crafted during a players game.
 
 6. survive.get_high_score.
   * Path:'user/userscore'
   * Method:'POST'
   * Parameters:'HowManyToQuery'
   * Returns:Message contains list of player scores in descending order, size of list based on the HowManyQuery input parameter.
+  * Descrip: This api list out the scores of all player up the parameter value.
 
 7. survive.get_user_game.
   * Path:'game/get_user_game'
   * Method:'POST'
   * Parameters:'user_name'
   * Returns:Message return a status of the user game by listing Game entity parameters urlsafe_key, game_over, canceled_game, survived, message, and user_name.
+  * Descrip:Returns a stats of a user game.
 
 8. survive.get_user_ranking.
   * Path:'user/rankingg'
   * Method:'GET'
   * Parameters:''
   * Returns:Message returns, email, name, total_played, and win_percentage of each player with a score > 0.
+  * Descrip:Returns the ranking based on win_percentage of each player in descending order.
 
 9. survive.howToCraft.
   * Path:'howtoCraft'
   * Method:'GET'
   * Parameters:''
   * Returns:Message returns a list of items and how to craft them
+  * Descrip:Helful in showing a player what items are needed to craft something.
 
 10. survive.new_game.
   * Path:'game'
