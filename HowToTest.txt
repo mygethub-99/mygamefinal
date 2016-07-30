@@ -1,0 +1,22 @@
+Run in localhost or on the GAE server.
+
+Create 2 or more users with valid email addresses
+
+Create 2 games, one for each user
+
+To quickly win the game use the craft_item function
+
+create 21 hay and 20 twig
+create 3 axe
+create 3 log
+create 1 torch
+create 1 firepit
+create 1 tent
+
+You should now be told that you have won the game. You player will be awarded points.
+
+Now you can test the scoring, ranking and and other functions of the game, like creating a new game and canceling it. 
+Or pulling the history for one of the games you just won with the game entity key.
+
+Thank you and have a nice day!
+
