@@ -280,7 +280,7 @@ class SurviveAPI(remote.Service):
             raise endpoints.NotFoundException(
                     'This user does not have any Inventory')
         if user.key==chklist.user:
-            if craft.has_key(request.item_name)== False:
+            if items.has_key(request.item_name)== False:
                 raise endpoints.NotFoundException('Invalid item name')
             itemname=request.item_name
             value=getattr( chklist, itemname)
