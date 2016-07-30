@@ -1,11 +1,11 @@
 import logging
-import time
 import webapp2
 from google.appengine.api import mail, app_identity
 from google.appengine.ext import ndb
 from api import SurviveAPI
 from utils import get_by_urlsafe
-from models import User, Game
+from models.user import User
+from models.game import Game
 
 
 class SendNewGameEmail(webapp2.RequestHandler):
