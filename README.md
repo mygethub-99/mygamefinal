@@ -68,8 +68,8 @@ index.py: Is used to create indexes for entity properties related to queries usi
 6. Good Luck!!!!!
 
 ### Endpoints Definitions:
-survive.cancel_game. Cancels game based on a user name.
-  *Hey
+1. survive.cancel_game. Cancels game based on a user name.
+  * Hey
 
 survive.check_items. Gives a user a means to query the inventory for a single inventory item.
 
