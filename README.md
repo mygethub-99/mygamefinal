@@ -71,66 +71,66 @@ index.py: Is used to create indexes for entity properties related to queries usi
 1. survive.cancel_game. 
   * Path:'cancel'
   * Method:'Put'
-  * Parameters:'user.name'
+  * Parameters:'user_name'
   * Returns:Message confirming that the user's game has been canceled.
   * Descrip:queries User entity using request.user.name parameter and updated boolean value of User.cancel_game
 
 2. survive.check_items.
   * Path:'invencheck'
   * Method:'POST'
-  * Parameters:'user.name, item.name'
+  * Parameters:'user_name, item_name'
   * Returns:Message contains the inventory for a users item in inventory
   * Descrip:queries Request body supplies user.name and item.name for query of Inventory entity, then return list of item inventory for a single user.
 
-survive.craft_item. 
+3. survive.craft_item. 
   * Path:'craft'
   * Method:'PUT'
-  * Parameters:'user.name, item.name'
+  * Parameters:'itemcraft, user_name'
   * Returns:Message telling the user that the item can, or can not be crafted based on the user's current inventory of items.
   * Descrip:This is the main api in the game. It starts game timers, checks to see if an item can be crafted, if a game has been won, and updated the Game entity and Inventory entity is necessary.
 
-survive.create_user.
+4. survive.create_user.
   * Path:'user'
   * Method:'PUT'
-  * Parameters:'user.email, user.name'
+  * Parameters:'email, user_name'
   * Returns:Message telling the user that their user profile has been saved to the User entity.
   * Descrip:This api saves the user.email and user.name properties in User entity.
 
-survive.game_history.
+5. survive.game_history.
   * Path:'game/{urlsafe_game_key}/history'
   * Method:'GET'
   * Parameters:'urlsafe_game_key'
   * Returns:Message containing the list of every item crafted by a user during a game.
 
-survive.get_high_score.
+6. survive.get_high_score.
   * Path:'user/userscore'
   * Method:'POST'
   * Parameters:'HowManyToQuery'
   * Returns:Message contains list of player scores in descending order, size of list based on the HowManyQuery input parameter.
 
-survive.get_user_game.
+7. survive.get_user_game.
   * Path:'game/get_user_game'
   * Method:'POST'
-  * Parameters:'user.name'
+  * Parameters:'user_name'
   * Returns:Message return a status of the user game by listing Game entity parameters urlsafe_key, game_over, canceled_game, survived, message, and user_name.
 
-survive.get_user_ranking.
+8. survive.get_user_ranking.
   * Path:'user/rankingg'
   * Method:'GET'
   * Parameters:''
   * Returns:Message returns, email, name, total_played, and win_percentage of each player with a score > 0.
 
-survive.howToCraft.
+9. survive.howToCraft.
   * Path:'howtoCraft'
   * Method:'GET'
   * Parameters:''
   * Returns:Message returns a list of items and how to craft them
 
-survive.new_game.
-  * Path:'howtoCraft'
-  * Method:'GET'
-  * Parameters:''
-  * Returns:Message returns a list of items and how to craft them
+10. survive.new_game.
+  * Path:'game'
+  * Method:'PUT'
+  * Parameters:'how_hard, user_name'
+  * Returns:Message returns a status of game for canceled_game, game_over, message, survived, urlsafe_key, and user_name, telling user to prepare to test your survival skills.
 
 ### List of api.py module functions.
 
