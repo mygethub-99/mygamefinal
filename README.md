@@ -58,11 +58,12 @@ index.py: Is used to create indexes for entity properties related to queries usi
 3. To win a player must craft a firepit and a tent. Use the survive.howToCraft link to see what items are needed to craft an item. Each player starts with all the flint, grass, tree, sapling, and boulders needed to make items required to build a tent and a firepit.
 * Hints
    a. Craft lots and lots of twigs and hay first.
-   b. Craft enough axe to create the logs needed for the firepit and a torch.
+   b. Craft enough axe to create the logs needed for the firepit.
    c. For the tent make lost of hay and twigs.
-   d. The game will tell you if you have created an item. If not, the game will tell you what is needed to craft the item.
+   d. The game will tell you if you have created an item. If you don't have the items needed to craft something, the game will tell you what is needed to craft the item.
 4. Once a tent, firepit and torch are crafted, the game will tell you have survived.
 5. A player will recieve 20 points for a level 1 game, 20 points for a level 2 game and 60 points for a level 3 game.
+6. Good Luck!!!!!
 ***
 ### List of game functions that can be executed in api explorer
 survive.cancel_game. Cancels game based on a user name.
@@ -87,7 +88,6 @@ cancel_game ends a game
 
 get_user_game gives a status of a users game
 
-invenOfCraft is used to craft an item
 
 craftItemNew is the module used to craft an item to survive
 
