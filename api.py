@@ -300,7 +300,7 @@ class SurviveAPI(remote.Service):
 
     @endpoints.method(message_types.VoidMessage, StringMessage,
             path='howtocraft',
-            http_method='POST', 
+            http_method='GET', 
             name='HowToCraft')
     #Must be a POST method to supply request response message
     def howtoCraft(self, request):
@@ -325,7 +325,7 @@ class SurviveAPI(remote.Service):
     @endpoints.method(response_message=UserForms,
                       path='user/ranking',
                       name='get_user_rankings',
-                      http_method='POST')
+                      http_method='GET')
     #Must be POST method to supply request response message
     def get_user_rankings(self, request):
         """Return all Users ranked by their win percentage"""
