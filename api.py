@@ -3,7 +3,6 @@ import endpoints
 from protorpc import remote
 from protorpc import messages
 from protorpc import message_types
-from google.appengine.ext import ndb
 from google.appengine.api import taskqueue
 from models.messages import(
     StringMessage,
