@@ -67,15 +67,24 @@ index.py: Is used to create indexes for entity properties related to queries usi
 
 ### List of game functions that can be executed in api explorer
 survive.cancel_game. Cancels game based on a user name.
+
 survive.check_items. Gives a user a means to query the inventory for a single inventory item.
+
 survive.craft_item. Use this function to craft items needed to survive.
+
 survive.create_user. Creates a new user.
 survive.game_history. Gives a history of a players moves for a url safe game key. Game key can be found in Datastore Viewer Game entity.
+
 survive.get_high_score. List out scores of users. The number returned score is set by HowManyToQuery input.
+
 survive.get_user_game. Provides a status of a users active game.
+
 survive.get_user_ranking. Returns user ranking in descending order for users with a score greater than 0.
+
 survive.howToCraft. Provides a list of items, and what is needed to craft each item to survive.
+
 survive.new_game. Creates a new game for a user. Only one active game allowed per user.
+
 ### List of api.py module functions.
 
 query_user decorator used for user query in various modules
