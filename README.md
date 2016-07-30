@@ -33,6 +33,8 @@ cron.yaml: configures cron task timing.
 
 utils.py: process url web safe ProtoBuf messaging.
 
+index.py: Is used to create indexes for entity properties related to queries using properties.
+
 ***
 ## Web Application Setup
  1. Install all software listed above under Software section.
