@@ -61,10 +61,10 @@ index.py: Is used to create indexes for entity properties related to queries usi
 * Hints
    a. Craft lots and lots of twigs and hay first.
    b. Craft enough axe to create the logs needed for the firepit.
-   c. For the tent make lost of hay and twigs.
+   c. For the tent make a large number of hay and twigs. Run the HowToCraft function again if needed.
    d. The game will tell you if you have created an item. If you don't have the items needed to craft something, the game will tell you what is needed to craft the item.
 4. Once a tent, firepit and torch are crafted, the game will tell you have survived.
-5. A player will recieve 20 points for a level 1 game, 20 points for a level 2 game and 60 points for a level 3 game.
+5. A player will recieve 20 points for a level 1 game, 40 points for a level 2 game, and 60 points for a level 3 game.
 6. Good Luck!!!!!
 
 ### List of game functions that can be executed in api explorer
