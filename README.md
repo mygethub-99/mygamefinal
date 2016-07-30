@@ -68,10 +68,19 @@ index.py: Is used to create indexes for entity properties related to queries usi
 6. Good Luck!!!!!
 
 ### Endpoints Definitions:
-1. survive.cancel_game. Cancels game based on a user name.
-  * Hey
+1. survive.cancel_game. 
+  * Path:'cancel'
+  * Method:'Put'
+  * Parameters:'user.name'
+  * Returns:Message confirming that the user's game has been canceled.
+  * Descrip:queries User entity using request.user.name parameter and updated boolean value of User.cancel_game
 
-survive.check_items. Gives a user a means to query the inventory for a single inventory item.
+2. survive.check_items.
+  * Path:'invencheck'
+  * Method:'POST'
+  * Parameters:'user.name'
+  * Returns:Message contains the inventory for a users item in inventory
+  * Descrip:queries Request body supplies user.name and item.name for query of Inventory entity, then return list of item inventory for a singl user.
 
 survive.craft_item. Use this function to craft items needed to survive.
 
