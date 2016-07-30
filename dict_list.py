@@ -61,3 +61,10 @@ def gamecheck (ingamecheck):
             setattr(ingamecheck, "timeout", True)
             ingamecheck.put()
     return
+
+
+#Function to re-populate the copycraft dict with inventory values.        
+def invenOfCraft(copycraft, inventory_items):
+    for w in copycraft:
+        copycraft[w]=getattr(inventory_items, w)
+    return copycraft
