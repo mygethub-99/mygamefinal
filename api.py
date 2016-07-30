@@ -265,11 +265,9 @@ class SurviveAPI(remote.Service):
     @endpoints.method(request_message=INVENT_CHECK,
                       response_message=StringMessage1,
                       path='invencheck',
-                      #This is the name that appears in the api
                       name='check_items',
-#Must be a POST message in order for Request body to work in Google api explorer
-#POST message allows for Providing a block of data. 
-                      http_method='GET')
+                      http_method='POST')
+    #Must be POST method to supply request response message
     @query_user
     def checkInventory(self, request, user):
         """Used to pull inventory on a item"""
