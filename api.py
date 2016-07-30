@@ -163,6 +163,8 @@ class SurviveAPI(remote.Service):
             raise endpoints.NotFoundException(
                     'A User with that name does not exist!')
         ingamecheck=Game.query(Game.user==user.key).get()
+        if not ingamecheck:
+            raise endpoints.NotFoundException('User does not have any games.')
         if ingamecheck.game_over == False:
             return ingamecheck.to_form \
             ('Here is the status of your active game.')
@@ -351,3 +353,4 @@ class SurviveAPI(remote.Service):
          
        
 api = endpoints.api_server([SurviveAPI])
+
