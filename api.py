@@ -272,11 +272,16 @@ class SurviveAPI(remote.Service):
     @query_user
     def checkInventory(self, request, user):
         """Used to pull inventory on a item"""
+        if not user:
+            raise endpoints.NotFoundException(
+                    'A User with that name does not exist!')
         chklist=Inventory.query( Inventory.user==user.key).get()
         if not chklist:
             raise endpoints.NotFoundException(
                     'This user does not have any Inventory')
         if user.key==chklist.user:
+            if craft.has_key(request.item_name)== False:
+                raise endpoints.NotFoundException('Invalid item name')
             itemname=request.item_name
             value=getattr( chklist, itemname)
             return StringMessage1(message='You have {} {} '.format \
