@@ -11,12 +11,9 @@ from models.messages import(
     ScoreForms
     )
 from models.request import (
-    checkInventory,
     cancel_game,
     NewGameForm,
     CraftItem,
-    GetScore,
-    GetUserGame
     )
 from models.game import (
     Game, 
@@ -39,15 +36,25 @@ from utils import get_by_urlsafe
 
 
 NEW_GAME_REQUEST = endpoints.ResourceContainer(NewGameForm)
-INVENT_CHECK = endpoints.ResourceContainer(checkInventory)
-CRAFT_ITEM = endpoints.ResourceContainer(CraftItem)
+
+INVENT_CHECK = endpoints.ResourceContainer \
+(user_name=messages.StringField(1), item_name=messages.StringField(2))
+
+CRAFT_ITEM = endpoints.ResourceContainer \
+(CraftItem, user_name=messages.StringField(1))
+
 CANCELED_GAME = endpoints.ResourceContainer(cancel_game)
+
 GAME_HISTORY = endpoints.ResourceContainer \
 (urlsafe_game_key=messages.StringField(1))
+
 USER_REQUEST = endpoints.ResourceContainer \
 (user_name=messages.StringField(1), email=messages.StringField(2))
-GET_USER_GAME = endpoints.ResourceContainer(GetUserGame)
-GAMESCORE = endpoints.ResourceContainer(GetScore)
+
+GET_USER_GAME=endpoints.ResourceContainer(user_name=messages.StringField(1))
+
+GAMESCORE = endpoints.ResourceContainer \
+(HowManyToQuery=messages.IntegerField(1))
 
 
 @endpoints.api(name='survive', version='v1')
@@ -66,7 +73,7 @@ class SurviveAPI(remote.Service):
                       response_message=StringMessage1,
                       path='user',
                       name='create_user',
-                      http_method='PUT')
+                      http_method='POST')
     def create_user(self, request):
         """Create a User. Requires a unique username"""
         if User.query(User.name == request.user_name).get():
@@ -83,22 +90,25 @@ class SurviveAPI(remote.Service):
                       response_message=GameForm,
                       path='game',
                       name='new_game',
-                      http_method='PUT')
+                      http_method='POST')
     @query_user
     def new_game(self, request, user):
         """Creates new game"""
         if not user:
             raise endpoints.NotFoundException(
                     'A User with that name does not exist!')
-        checklist= [1, 2, 3]
-        if (request.how_hard not in checklist):
+        
+        if (request.how_hard not in [1,2,3]):
             raise endpoints.NotFoundException \
             ('Invalid value. Pick a level 1, 2, or 3')
+        
         ingamecheck=Game.query(Game.user==user.key).get()
         if not ingamecheck:
             taskqueue.add(params= \
-                {'email': user.email, 'name': user.name},
-            url='/tasks/send_newgame_email', method="POST")
+            {'email': user.email, 
+            'name': user.name},
+            url='/tasks/send_newgame_email', 
+            method="POST")
             invenlist=self._inventlist(request)
             game=Game.new_game(user.key, request.how_hard)
             return game.to_form \
@@ -107,14 +117,16 @@ class SurviveAPI(remote.Service):
         if ingamecheck.game_over == False:
             raise endpoints.ConflictException \
                 ('Only one active game per user is allowed')
-        else:
-            taskqueue.add(params= \
-                {'email': user.email, 'name': user.name},
-            url='/tasks/send_newgame_email', method="POST")
-            invenlist=self._inventlist(request)
-            game=Game.new_game(user.key, request.how_hard)
-            return game.to_form \
-            ('Prepare to test your survival skills!')
+        
+        taskqueue.add(params= \
+        {'email': user.email, 
+        'name': user.name},
+        url='/tasks/send_newgame_email', 
+        method="POST")
+        invenlist=self._inventlist(request)
+        game=Game.new_game(user.key, request.how_hard)
+        return game.to_form \
+        ('Prepare to test your survival skills!')
 
         
     @endpoints.method(request_message=CANCELED_GAME,
@@ -153,8 +165,7 @@ class SurviveAPI(remote.Service):
                       response_message=GameForm,
                       path='game/get_user_game',
                       name='get_user_game',
-                      http_method='POST')
-    #Requires POST method to provide request.user.name
+                      http_method='GET')
     @query_user
     def get_user_game(self, request, user):
         """Return all User's active games"""
@@ -267,8 +278,7 @@ class SurviveAPI(remote.Service):
                       response_message=StringMessage1,
                       path='invencheck',
                       name='check_items',
-                      http_method='POST')
-    #Must be POST method to supply request response message
+                      http_method='GET')
     @query_user
     def checkInventory(self, request, user):
         """Used to pull inventory on a item"""
@@ -308,7 +318,6 @@ class SurviveAPI(remote.Service):
             path='howtocraft',
             http_method='GET', 
             name='HowToCraft')
-    #Must be a POST method to supply request response message
     def howtoCraft(self, request):
         """Pulls a list of how to craft an item."""
         message=crafty
@@ -332,7 +341,6 @@ class SurviveAPI(remote.Service):
                       path='user/ranking',
                       name='get_user_rankings',
                       http_method='GET')
-    #Must be POST method to supply request response message
     def get_user_rankings(self, request):
         """Return all Users ranked by their win percentage"""
         users = User.query(User.total_played > 0).fetch()
@@ -345,7 +353,7 @@ class SurviveAPI(remote.Service):
             response_message=ScoreForms,
             path='user/userscore',
             name='get_high_score',
-            http_method='POST')
+            http_method='GET')
     #Must be POST method to supply request response message
     def scores(self, request):
         """Present User scores"""
@@ -357,4 +365,6 @@ class SurviveAPI(remote.Service):
          
        
 api = endpoints.api_server([SurviveAPI])
+
+
 
