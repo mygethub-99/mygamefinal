@@ -89,11 +89,12 @@ create 1 tent
 
 You should now be told that you have won the game. You player will be awarded points.
 
-Now you can test the scoring, ranking and and other game api. 
-Or pulling the history for one of the games you just won with the game entity key.
+Now you can test the scoring, ranking and and other game api's, 
+rr pulling the history for one of the games you just played with the game entity key.
 
 Thank you and have a nice day!
 
+***
 ### Endpoints Definitions:
 1. survive.cancel_game. 
   * Path:'cancel'
