@@ -4,7 +4,7 @@
 
 ## Name of Project: Survive GAE game api
 
-### Description: This is a game called "Survive" that is programed to operate on the GAE platform. This is a single player game that involves a player crafting the needed items to survive against the onslaught of the elements. The game is played using the google api explorer. Best result if FireFox is used.
+### Description: This is a game called "Survive" that is programed to operate on the GAE platform. This is a single player game that involves a player crafting the needed items to survive against the onslaught of the elements. The game is played using the google api explorer. 
 ***
 
 ### Required software and files.
@@ -12,7 +12,6 @@
 Software:
 Clone [mygamefinal] (https://github.com/mygethub-99/mygamefinal.git) onto your local machine.
 Install [Google_App_Launcher] (https://cloud.google.com/appengine/downloads)
-Install [FireFox] (https://www.mozilla.org/en-US/firefox/new/?f=86)
 
 Files
 api.py: Main application code handleing api models for game functions
@@ -66,6 +65,34 @@ index.py: Is used to create indexes for entity properties related to queries usi
 4. Once a tent, firepit and torch are crafted, the game will tell you have survived.
 5. A player will recieve 20 points for a level 1 game, 40 points for a level 2 game, and 60 points for a level 3 game.
 6. Good Luck!!!!!
+***
+### How to quick play the game for testing.
+Run in localhost or on the GAE server.
+
+Create 2 or more users with valid email addresses
+
+Create 2 games, one for each user
+
+To quickly win the game use the craft_item api
+
+create 22 hay and 22 twig
+
+create 3 axe
+
+create 3 log
+
+create 1 torch
+
+create 1 firepit
+
+create 1 tent
+
+You should now be told that you have won the game. You player will be awarded points.
+
+Now you can test the scoring, ranking and and other game api. 
+Or pulling the history for one of the games you just won with the game entity key.
+
+Thank you and have a nice day!
 
 ### Endpoints Definitions:
 1. survive.cancel_game. 
