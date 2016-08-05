@@ -63,9 +63,10 @@ index.py: Is used to create indexes for entity properties related to queries usi
 4. Once a tent, firepit and torch are crafted, the game will tell you have survived.
 5. A player will recieve 20 points for a level 1 game, 40 points for a level 2 game, and 60 points for a level 3 game.
 6. Good Luck!!!!!
+
 ***
 ### How to quick play the game for testing.
-***
+
 Run in localhost or on the GAE server.
 
 Create 2 or more users with valid email addresses
