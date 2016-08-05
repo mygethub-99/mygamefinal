@@ -42,7 +42,7 @@ index.py: Is used to create indexes for entity properties related to queries usi
  4. Once the application has loaded in Google App Launcher, click on the application under the name column and then click run.
  5. Also click on Logs so that you can view application error messaging.
  6. Now open a web browser and type in this url: localhost:8080/_ah/api/explorer 
- 7. Click on the shield symbol at the far left of the url in the browser and disable protection. This will allow the application to run on your browser
+ 7. There may be some web browser configuration changes needed for GAE to work with your browser. 
  8. Add another tab to your web browser and type in this url: localhost:8001. This will open up the App Engine Console. For more info on the App Engine Console, click on this link. [Click_here] (https://cloud.google.com/appengine/docs/python/tools/using-local-server)
  9. You are now ready to run the application on local host.
  10. To play the game on the GAE server, click on the Stop button in the GAE launcher. Wait for the application to stop, then click on deploy in the GAE launcher. This will upload the game code to the GAE server and give you a log window to view for errors.
