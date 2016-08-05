@@ -26,8 +26,6 @@ models.py: Contains classes related to game forms for input and response http me
 
 settings.py: Contains web client that is used for oauth operations.
 
-utils.py: Contains support coding for the application.
-
 cron.yaml: configures cron task timing.
 
 utils.py: process url web safe ProtoBuf messaging.
@@ -168,31 +166,4 @@ Thank you and have a nice day!
   * Method:'POST'
   * Parameters:'how_hard, user_name'
   * Returns:Message returns a status of game for canceled_game, game_over, message, survived, urlsafe_key, and user_name, telling user to prepare to test your survival skills.
-
-### List of api.py module functions.
-
-query_user decorator used for user query in various modules
-
-create_user creates a new user in GAE
-
-new_game creates a new game for a user, sets up the welcome email in taskqueue
-
-cancel_game ends a game
-
-get_user_game gives a status of a users game
-
-craftItemNew is the module used to craft an item to survive
-
-checkInventory will check the inventory for a single item that belongs to a user
-
-_inventlist sets up a new inventory for a user
-
-howtoCraft give a listing of how to craft each item
-
-gameHistory provides a listing of each move made by a player for a particular game
-
-get_user_ranking gives a list of each player and their ranking if the user has a score to rank
-
-scores provides the scores for a variable number of players pulled
-
 
