@@ -41,13 +41,13 @@ index.py: Is used to create indexes for entity properties related to queries usi
  3. Launch Google App Launch. Click file, add existing application and browse to location of the cloned project you down loaded from github.com. Click Ok. 
  4. Once the application has loaded in Google App Launcher, click on the application under the name column and then click run.
  5. Also click on Logs so that you can view application error messaging.
- 6. Now open FireFox and type in this url: localhost:8080/_ah/api/explorer 
+ 6. Now open a web browser and type in this url: localhost:8080/_ah/api/explorer 
  7. Click on the shield symbol at the far left of the url in the browser and disable protection. This will allow the application to run on your browser
- 8. Add another tab to firefox browser and type in this url: localhost:8001. This will open up the App Engine Console. For more info on the App Engine Console, click on this link. [Click_here] (https://cloud.google.com/appengine/docs/python/tools/using-local-server)
+ 8. Add another tab to your web browser and type in this url: localhost:8001. This will open up the App Engine Console. For more info on the App Engine Console, click on this link. [Click_here] (https://cloud.google.com/appengine/docs/python/tools/using-local-server)
  9. You are now ready to run the application on local host.
  10. To play the game on the GAE server, click on the Stop button in the GAE launcher. Wait for the application to stop, then click on deploy in the GAE launcher. This will upload the game code to the GAE server and give you a log window to view for errors.
- 11. After completion of the application launch to GAE, type this url in the firefox browser: http://gamechanger-1260.appspot.com/_ah/api/explorer, or click this link. [Link] (http://gamechanger-1260.appspot.com/_ah/api/explorer)
- 12. You shold now have view of the api explorer as hosted by the GAE server in your Firefox browser.
+ 11. After completion of the application launch to GAE, type this url in the web browser: http://gamechanger-1260.appspot.com/_ah/api/explorer, or click this link. [Link] (http://gamechanger-1260.appspot.com/_ah/api/explorer)
+ 12. You shold now have view of the api explorer as hosted by the GAE server in your web browser.
  13. NOTE: There is an issue with API explorer not displaying api descriptions for api using none-GAE decorators.
 
 ***
@@ -89,8 +89,7 @@ create 1 tent
 
 You should now be told that you have won the game. You player will be awarded points.
 
-Now you can test the scoring, ranking and and other game api's, 
-rr pulling the history for one of the games you just played with the game entity key.
+Now you can test the scoring, ranking and and other game api's.
 
 Thank you and have a nice day!
 
@@ -98,14 +97,14 @@ Thank you and have a nice day!
 ### Endpoints Definitions:
 1. survive.cancel_game. 
   * Path:'cancel'
-  * Method:'Put'
+  * Method:'PUT'
   * Parameters:'user_name'
   * Returns:Message confirming that the user's game has been canceled.
-  * Descrip:Queries User entity using request.user.name parameter and updated boolean value of User.cancel_game
+  * Descrip:Queries User entity using request.user.name parameter and updates boolean property of User.cancel_game
 
 2. survive.check_items.
   * Path:'invencheck'
-  * Method:'POST'
+  * Method:'GET'
   * Parameters:'user_name, item_name'
   * Returns:Message contains the inventory for a users item in inventory
   * Descrip:Queries Request body supplies user.name and item.name for query of Inventory entity, then return list of item inventory for a single user.
@@ -115,11 +114,11 @@ Thank you and have a nice day!
   * Method:'PUT'
   * Parameters:'itemcraft, user_name'
   * Returns:Message telling the user that the item can, or can not be crafted based on the user's current inventory of items.
-  * Descrip:This is the main api in the game. It starts game timers, checks to see if an item can be crafted, if a game has been won, and updates the Game entity and Inventory entity is necessary.
+  * Descrip:This is the main api in the game. It starts game timers, checks to see if an item can be crafted, if a game has been won, and updates the Game entity and Inventory entity if necessary.
 
 4. survive.create_user.
   * Path:'user'
-  * Method:'PUT'
+  * Method:'POST'
   * Parameters:'email, user_name'
   * Returns:Message telling the user that their user profile has been saved to the User entity.
   * Descrip:This api saves the user.email and user.name properties in User entity.
@@ -133,14 +132,14 @@ Thank you and have a nice day!
 
 6. survive.get_high_score.
   * Path:'user/userscore'
-  * Method:'POST'
+  * Method:'GET'
   * Parameters:'HowManyToQuery'
   * Returns:Message contains list of player scores in descending order, size of list based on the HowManyQuery input parameter.
-  * Descrip: This api list out the scores of all player up the parameter value.
+  * Descrip: This api list a number of players scores equal to the parameter value.
 
 7. survive.get_user_game.
   * Path:'game/get_user_game'
-  * Method:'POST'
+  * Method:'GET'
   * Parameters:'user_name'
   * Returns:Message return a status of the user game by listing Game entity parameters urlsafe_key, game_over, canceled_game, survived, message, and user_name.
   * Descrip:Returns a stats of a user game.
@@ -161,7 +160,7 @@ Thank you and have a nice day!
 
 10. survive.new_game.
   * Path:'game'
-  * Method:'PUT'
+  * Method:'POST'
   * Parameters:'how_hard, user_name'
   * Returns:Message returns a status of game for canceled_game, game_over, message, survived, urlsafe_key, and user_name, telling user to prepare to test your survival skills.
 
@@ -171,12 +170,11 @@ query_user decorator used for user query in various modules
 
 create_user creates a new user in GAE
 
-new_game creates a new game for a user, setups up email reminder in taskqueue
+new_game creates a new game for a user, sets up the welcome email in taskqueue
 
 cancel_game ends a game
 
 get_user_game gives a status of a users game
-
 
 craftItemNew is the module used to craft an item to survive
 
