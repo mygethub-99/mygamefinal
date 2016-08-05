@@ -56,10 +56,15 @@ index.py: Is used to create indexes for entity properties related to queries usi
 2. Create a new game by selecting the survive.new_game link. Choose the level of difficulty of the game 1=easy unlimited game time, 2= a seven minute limit to play the game, 3= a four minute game time limit. A user can only have ONE active game at a time.
 3. To win a player must craft a firepit and a tent. Use the survive.howToCraft link to see what items are needed to craft an item. Each player starts with all the flint, grass, tree, sapling, and boulders needed to make items required to build a tent and a firepit.
 * Hints
-   a. Craft lots and lots of twigs and hay first.
-   b. Craft enough axe to create the logs needed for the firepit.
-   c. For the tent make a large number of hay and twigs. Run the HowToCraft function again if needed.
-   d. The game will tell you if you have created an item. If you don't have the items needed to craft something, the game will tell you what is needed to craft the item.
+  
+ a. Craft lots and lots of twigs and hay first.
+   
+ b. Craft enough axe to create the logs needed for the firepit.
+   
+ c. For the tent make a large number of hay and twigs. Run the HowToCraft function again if needed.
+   
+ d. The game will tell you if you have created an item. If you don't have the items needed to craft something, the game will tell you what is needed to craft the item.
+
 4. Once a tent, firepit and torch are crafted, the game will tell you have survived.
 5. A player will recieve 20 points for a level 1 game, 40 points for a level 2 game, and 60 points for a level 3 game.
 6. Good Luck!!!!!
