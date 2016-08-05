@@ -51,8 +51,6 @@ index.py: Is used to create indexes for entity properties related to queries usi
  13. NOTE: There is an issue with API explorer not displaying api descriptions for api using none-GAE decorators.
 
 ***
-### Udacity project reviewer please look over the HowToTest.txt file
-***
 ### How to play the game.
 1. Create new user by selecting the survive.create_user link. Input your email address and a unique user name.
 2. Create a new game by selecting the survive.new_game link. Choose the level of difficulty of the game 1=easy unlimited game time, 2= a seven minute limit to play the game, 3= a four minute game time limit. A user can only have ONE active game at a time.
@@ -67,6 +65,7 @@ index.py: Is used to create indexes for entity properties related to queries usi
 6. Good Luck!!!!!
 ***
 ### How to quick play the game for testing.
+***
 Run in localhost or on the GAE server.
 
 Create 2 or more users with valid email addresses
