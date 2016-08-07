@@ -3,7 +3,7 @@
 ****
 ## Name of Project: Survive GAE game api
 
-### Description: This is a game called "Survive" that is programed to operate on the GAE platform. This is a single player game that involves a player crafting the needed items to survive against the onslaught of the elements. The game is played using the google api explorer. 
+### Description: This is a game called "Survive" coded in python 2.7.12. This is a single player game that involves a player crafting the needed items to survive against the onslaught of the elements. The GAE api explorer may be used to test the api's.
 ***
 
 ### Required software and files.
@@ -15,36 +15,36 @@ Install [Google_App_Launcher] (https://cloud.google.com/appengine/downloads)
 Files
 api.py: Main application code handleing api models for game functions
 
-app.yaml: Main GAE application config file that determine GAE project that app resides on.
+app.yaml: Main GAE application config file that determines what GAE web project that app resides on.
 
 README.md: Provides information and instructions related to the app survive.
 
-dict_list.py: Contains supporting code for game function.
+dict_list.py: Contains supporting code for game functions.
 
 models.py: Contains classes related to game forms for input and response http messaging.
 
 settings.py: Contains web client that is used for oauth operations.
 
-cron.yaml: configures cron task timing.
+cron.yaml: Configures cron task timing.
 
-utils.py: process url web safe ProtoBuf messaging.
+utils.py: Processes url web safe ProtoBuf messaging.
 
 index.py: Is used to create indexes for entity properties related to queries using properties.
 
 ***
 ## Web Application Setup
- 1. Install all software listed above under Software section.
+ 1. Complete GAE application install.
  2. Clone game project as shown in Software section.  
- 3. Launch Google App Launch. Click file, add existing application and browse to location of the cloned project you down loaded from github.com. Click Ok. 
+ 3. Open Google App Engine Launcher. Click file, add existing application and browse to location of the cloned project that you down loaded from github.com. Click Ok. 
  4. Once the application has loaded in Google App Launcher, click on the application under the name column and then click run.
- 5. Also click on Logs so that you can view application error messaging.
- 6. Now open a web browser and type in this url: localhost:8080/_ah/api/explorer 
+ 5. Also click on the "Logs" button in the GAE launcher so that you can view application error messaging.
+ 6. Now open a web browser and type in this url: localhost:8080/_ah/api/explorer. 
  7. There may be some web browser configuration changes needed for GAE to work with your browser. 
  8. Add another tab to your web browser and type in this url: localhost:8001. This will open up the App Engine Console. For more info on the App Engine Console, click on this link. [Click_here] (https://cloud.google.com/appengine/docs/python/tools/using-local-server)
  9. You are now ready to run the application on local host.
  10. To play the game on the GAE server, click on the Stop button in the GAE launcher. Wait for the application to stop, then click on deploy in the GAE launcher. This will upload the game code to the GAE server and give you a log window to view for errors.
  11. After completion of the application launch to GAE, type this url in the web browser: http://gamechanger-1260.appspot.com/_ah/api/explorer, or click this link. [Link] (http://gamechanger-1260.appspot.com/_ah/api/explorer)
- 12. You shold now have view of the api explorer as hosted by the GAE server in your web browser.
+ 12. You shold now have a view of the api explorer as hosted by the GAE server in your web browser.
  13. NOTE: There is an issue with API explorer not displaying api descriptions for api using none-GAE decorators.
 
 ***
