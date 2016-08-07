@@ -51,7 +51,7 @@ index.py: Is used to create indexes for entity properties related to queries usi
 ***
 ### How to play the game.
 1. Create new user by selecting the survive.create_user link. Input your email address and a unique user name.
-2. Create a new game by selecting the survive.new_game link. Choose the level of difficulty of the game 1=easy unlimited game time, 2= a seven minute limit to play the game, 3= a four minute game time limit. A user can only have ONE active game at a time.
+2. Create a new game by selecting the survive.new_game link. Choose the level of difficulty of the game 1=easy unlimited game time, 2= a seven minute limit to play the game, 3= a four minute game time limit. A user can only have ONE active game at a time. Game timer does not start ticking until a player crafts their first item
 3. To win a player must craft a firepit and a tent. Use the survive.howToCraft link to see what items are needed to craft an item. Each player starts with all the flint, grass, tree, sapling, and boulders needed to make items required to build a tent and a firepit.
 * Hints
   
