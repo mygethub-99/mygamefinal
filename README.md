@@ -2,6 +2,8 @@
 
 ****
 
+https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjNhLyrpLDOAhXJYyYKHWqgD3YQjRwIBw&url=https%3A%2F%2Fwww.udacity.com%2F&psig=AFQjCNE96vNnj6M3gHUSxPt0egG-XKvdKw&ust=1470692956135437
+
 ## Name of Project: Survive GAE game api
 
 ### Description: This is a game called "Survive" that is programed to operate on the GAE platform. This is a single player game that involves a player crafting the needed items to survive against the onslaught of the elements. The game is played using the google api explorer. 
