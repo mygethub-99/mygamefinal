@@ -103,8 +103,10 @@ class SurviveAPI(remote.Service):
             raise endpoints.NotFoundException \
             ('Invalid value. Pick a level 1, 2, or 3')
 
-        ingamecheck=Game.query(Game.user==user.key).get()
-        if not ingamecheck or ingamecheck.game_over == True:
+        ingamecheck=Game.query(Game.user==user.key).filter(
+            Game.game_over == False).get()
+        
+        if not ingamecheck:
             taskqueue.add(params= \
             {'email': user.email, 
             'name': user.name},
@@ -192,8 +194,7 @@ class SurviveAPI(remote.Service):
                     'A User with that name does not exist!')
         
         ingamecheck=Game.query(Game.user==user.key).filter \
-        (Game.game_over == False)
-        ingamecheck =ingamecheck.get()
+        (Game.game_over == False).get()
         if not ingamecheck:
             raise endpoints.NotFoundException \
             ('User is not in a game. Please create a new game for this user.')
@@ -370,6 +371,8 @@ class SurviveAPI(remote.Service):
          
        
 api = endpoints.api_server([SurviveAPI])
+
+
 
 
 
