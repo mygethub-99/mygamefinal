@@ -107,11 +107,13 @@ class SurviveAPI(remote.Service):
             Game.game_over == False).get()
         
         if not ingamecheck:
-            taskqueue.add(params= \
-            {'email': user.email, 
-            'name': user.name},
+            taskqueue.add(
+                params={
+                'email': user.email,
+                'name': user.name},
             url='/tasks/send_newgame_email', 
             method="POST")
+
             invenlist=self._inventlist(request)
             game=Game.new_game(user.key, request.how_hard)
             return game.to_form \
@@ -311,7 +313,7 @@ class SurviveAPI(remote.Service):
         check_invent=Inventory.query(Inventory.name== \
             request.user_name).get()
         
-        #Deletes the inventory list and throw message.    
+            
         if check_invent:
             check_invent.key.delete()
         invent=Inventory(name=user.name, user=user.key, \
