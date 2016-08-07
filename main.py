@@ -11,7 +11,7 @@ from models.game import Game
 class SendNewGameEmail(webapp2.RequestHandler):
     def post(self):
         """Send email to user once creating a new game"""
-        subject = 'Thank you for playing survivor'
+        subject = 'Thank you for playing Survivor'
         body = 'Hello {} you have a new game in progress. Enjoy!'.format\
         (self.request.get('name'))
         # This will send test emails, the arguments to send_mail are:
