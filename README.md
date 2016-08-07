@@ -2,7 +2,7 @@
 
 ****
 
-https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjNhLyrpLDOAhXJYyYKHWqgD3YQjRwIBw&url=https%3A%2F%2Fwww.udacity.com%2F&psig=AFQjCNE96vNnj6M3gHUSxPt0egG-XKvdKw&ust=1470692956135437
+![logo]:https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjNhLyrpLDOAhXJYyYKHWqgD3YQjRwIBw&url=https%3A%2F%2Fwww.udacity.com%2F&psig=AFQjCNE96vNnj6M3gHUSxPt0egG-XKvdKw&ust=1470692956135437 "Logo Title Text 2"
 
 ## Name of Project: Survive GAE game api
 
