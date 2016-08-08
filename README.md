@@ -147,7 +147,7 @@ Thank you and have a nice day!
   * Descrip:Returns a stats of a user game.
 
 8. survive.get_user_ranking.
-  * Path:'user/rankingg'
+  * Path:'user/ranking'
   * Method:'GET'
   * Parameters:''
   * Returns:Message returns, email, name, total_played, and win_percentage of each player with a score > 0.
