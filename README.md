@@ -67,7 +67,7 @@ index.py: Is used to create indexes for entity properties related to queries usi
 6. Good Luck!!!!!
 
 ***
-### How to quick play the game for testing.
+### How to quick play the Survive for testing.
 
 Run in localhost or on the GAE server.
 
